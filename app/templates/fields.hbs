@@ -1,4 +1,6 @@
 <ModalDialog
-  @onClose={{fn this.transitionToParentRoute}}
+  @onClose={{this.transitionToParentRoute}}
   @title="Great title"
-/>
+>
+  <FormGenerator @blueprint={{this.model}}/>
+</ModalDialog>

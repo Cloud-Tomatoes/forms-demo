@@ -1,0 +1,33 @@
+<BsForm
+  @onSubmit={{fn this.onSubmit}}
+as |form|
+>
+  <StepManager as |w|>
+    {{#each this.groupsList as |step index|}}
+      <w.Step @name={{index}}>
+        <form.group>
+          <label class="control-label">First name</label>
+          <input
+            value={{this.firstname}}
+            class="form-control"
+            oninput={{action (mut this.firstname) value="target.value"}}
+            type="text"
+          >
+        </form.group>
+
+        {{#unless (eq this.groupsList.firstObject step)}}
+          <button  class="btn-warning" {{on "click" (fn w.transition-to (sub index 1))}}>
+            Go Back
+          </button>
+        {{/unless}}
+
+        {{#unless (eq this.groupsList.lastObject step)}}
+          <button  class="btn-info" {{on "click" (fn w.transition-to (add index 1))}}>
+            Continue
+          </button>
+        {{/unless}}
+      </w.Step>
+    {{/each}}
+  </StepManager>
+  {{yield}}
+</BsForm>
