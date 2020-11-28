@@ -5,7 +5,7 @@ as |form|
   <StepManager as |w|>
     {{#each this.groupsList as |step index|}}
       <w.Step @name={{index}}>
-        {{#each (get groups step) as |property|}}
+        {{#each (sort-by "ui.position" (get groups step)) as |property|}}
           <form.group>
             <label class="control-label">{{str-capitalize property.ui.label}}</label>
             <input
