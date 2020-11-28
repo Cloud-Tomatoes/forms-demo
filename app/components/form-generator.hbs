@@ -5,15 +5,18 @@ as |form|
   <StepManager as |w|>
     {{#each this.groupsList as |step index|}}
       <w.Step @name={{index}}>
-        <form.group>
-          <label class="control-label">First name</label>
-          <input
-            value={{this.firstname}}
-            class="form-control"
-            oninput={{action (mut this.firstname) value="target.value"}}
-            type="text"
-          >
-        </form.group>
+        {{#each (get groups step) as |property|}}
+          <form.group>
+            <label class="control-label">{{str-capitalize property.ui.label}}</label>
+            <input
+              value={{or property.value property.defaultValue}}
+              placeholder={{property.ui.placeholder}}
+              class="form-control"
+              oninput={{action (mut property.value) value="target.value"}}
+              type="text"
+            >
+          </form.group>
+        {{/each}}
 
         {{#unless (eq this.groupsList.firstObject step)}}
           <button  class="btn-warning" {{on "click" (fn w.transition-to (sub index 1))}}>
