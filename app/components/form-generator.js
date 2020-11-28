@@ -1,10 +1,17 @@
 import Component from '@glimmer/component';
+import { Changeset } from 'ember-changeset';
+import { tryInvoke } from '@ember/utils';
 import { action } from '@ember/object';
 
 export default class FormGeneratorComponent extends Component {
 
-  get groups() {
+  get bluePrintChangeset() {
     const blueprint = this.args.blueprint[0];
+    return Changeset(blueprint);
+  }
+
+  get groups() {
+    const blueprint = this.bluePrintChangeset;
     const properties = blueprint.attributes.properties;
     let groups = {};
     for (let prop in properties) {
@@ -22,6 +29,7 @@ export default class FormGeneratorComponent extends Component {
   }
 
   @action onSubmit() {
+    return tryInvoke(this.args, 'onSubmit');
   }
 
 }
