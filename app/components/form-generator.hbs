@@ -1,36 +1,48 @@
-<BsForm
-  @onSubmit={{fn this.onSubmit}}
-as |form|
->
-  <StepManager as |w|>
-    {{#each this.groupsList as |step index|}}
-      <w.Step @name={{index}}>
-        {{#each (sort-by "ui.position" (get groups step)) as |property|}}
-          <form.group>
-            <label class="control-label">{{str-capitalize property.ui.label}}</label>
-            <input
-              value={{or property.value property.defaultValue}}
-              placeholder={{property.ui.placeholder}}
-              class="form-control"
-              oninput={{action (mut property.value) value="target.value"}}
-              type="text"
+<StepManager as |w|>
+  {{#each changesets as |changeset index|}}
+    <w.Step @name={{index}}>
+      <BsForm
+        @onSubmit={{fn this.onSubmit}}
+        @model={{changeset}}
+      as |form|
+      >
+        {{#each-in changeset.data as |key|}}
+          <form.element
+            @controlType="text"
+            @label={{str-capitalize (changeset-get changeset (concat key ".ui.label"))}}
+            @property={{concat key ".value"}}
+            as |el|>
+            <el.control
+              placeholder={{changeset-get changeset (concat key ".ui.placeholder")}}
+            />
+          </form.element>
+        {{/each-in}}
+
+        {{#let (eq index 0) as |isFirstForm|}}
+          {{#unless isFirstForm}}
+            <button
+              class="btn btn-warning"
+              {{on "click" (fn w.transition-to (sub index 1))}}
             >
-          </form.group>
-        {{/each}}
+              Go Back
+            </button>
+          {{/unless}}
+        {{/let}}
 
-        {{#unless (eq this.groupsList.firstObject step)}}
-          <button  class="btn-warning" {{on "click" (fn w.transition-to (sub index 1))}}>
-            Go Back
-          </button>
-        {{/unless}}
-
-        {{#unless (eq this.groupsList.lastObject step)}}
-          <button  class="btn-info" {{on "click" (fn w.transition-to (add index 1))}}>
-            Continue
-          </button>
-        {{/unless}}
-      </w.Step>
-    {{/each}}
-  </StepManager>
-  {{yield}}
-</BsForm>
+        {{#let (eq index (sub changesets.length 1)) as |isLastForm|}}
+          {{#unless isLastForm}}
+            <button
+              class="btn btn-success"
+              {{on "click" (fn w.transition-to (add index 1))}}
+            >
+              Continue
+            </button>
+          {{/unless}}
+          {{#if isLastForm}}
+            <form.submitButton>Submit</form.submitButton>
+          {{/if}}
+        {{/let}}
+      </BsForm>
+    </w.Step>
+  {{/each}}
+</StepManager>
