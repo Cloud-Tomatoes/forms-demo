@@ -10,10 +10,6 @@ as |Modal|
     </h4>
   </Modal.header>
   <Modal.body>
-    {{yield}}
+    {{yield Modal}}
   </Modal.body>
-  <Modal.footer as |footer|>
-    <BsButton @onClick={{action Modal.close}} @type="danger">Cancel</BsButton>
-    <BsButton @onClick={{action Modal.submit}} @type="success">Confirm</BsButton>
-  </Modal.footer>
 </BsModal>
