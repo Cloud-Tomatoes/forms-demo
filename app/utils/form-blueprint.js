@@ -31,9 +31,12 @@ export default {
                           "placeholder": "Your name here",
                         },
                         "validation": {
-                            "Neos.Neos\/Validation\/NotEmptyValidator": [],
-                            "Neos.Neos\/Validation\/StringLengthValidator": {
-                                "maximum": 50
+                            "Neos.Neos\/Validation\/validatePresence": {
+                              "presence": true,
+                              "ignoreBlank": true
+                            },
+                            "Neos.Neos\/Validation\/validateLength": {
+                              "max": 50
                             }
                         }
                     },
@@ -46,12 +49,25 @@ export default {
                           "placeholder": "Your last name here",
                         },
                         "validation": {
-                            "Neos.Neos\/Validation\/NotEmptyValidator": []
+                            "Neos.Neos\/Validation\/validatePresence": {
+                              "presence": true,
+                              "ignoreBlank": true
+                            }
                         }
                     },
                     "age": {
                         "type": "number",
-                        "defaultValue": 1300,
+                        "value": 1300,
+                        "ui": {
+                          "label": "Age",
+                          "group": "data",
+                          "position": 3,
+                          "placeholder": "Your age here"
+                        }
+                    },
+                    "age": {
+                        "type": "number",
+                        "value": 1300,
                         "ui": {
                           "label": "Age",
                           "group": "data",
@@ -75,6 +91,7 @@ export default {
                     },
                     "color": {
                         "type": "string",
+                        "value": "pink",
                         "ui": {
                           "label": "Favourite color",
                           "group": "misc",
