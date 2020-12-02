@@ -23,7 +23,7 @@ export default {
                 "help": "",
                 "properties": {
                     "name": {
-                        "type": "string",
+                        "type": "text",
                         "ui": {
                           "label": "first name",
                           "group": "data",
@@ -41,7 +41,7 @@ export default {
                         }
                     },
                     "lastName": {
-                        "type": "string",
+                        "type": "text",
                         "ui": {
                           "label": "last name",
                           "group": "data",
@@ -76,29 +76,49 @@ export default {
                         }
                     },
                     "address": {
-                        "type": "string",
+                        "type": "text",
                         "ui": {
                           "label": "Street",
                           "group": "location"
                         }
                     },
                     "city": {
-                        "type": "string",
+                        "type": "text",
                         "ui": {
                           "label": "City",
                           "group": "location"
                         }
                     },
+                    "EU": {
+                        "type": "checkbox",
+                        "ui": {
+                          "label": "Inside EU",
+                          "group": "location"
+                        }
+                    },
                     "color": {
-                        "type": "string",
+                        "type": "text",
                         "value": "pink",
                         "ui": {
                           "label": "Favourite color",
                           "group": "misc",
                           "placeholder": "Favourite color"
+                        },
+                        "validation": {
+                            "Neos.Neos\/Validation\/validatePresence": {
+                              "presence": true,
+                              "ignoreBlank": true
+                            }
+                        }
+                    },
+                    "description": {
+                        "type": "textarea",
+                        "ui": {
+                          "label": "Description",
+                          "group": "misc",
+                          "placeholder": "Color description"
                         }
                     }
-
                 }
             }
         }

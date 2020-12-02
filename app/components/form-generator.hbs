@@ -8,7 +8,7 @@
       >
         {{#each-in changeset.data as |key|}}
           <form.element
-            @controlType="text"
+            @controlType={{changeset-get changeset (concat key ".type")}}
             @label={{str-capitalize (changeset-get changeset (concat key ".ui.label"))}}
             @property={{concat key ".value"}}
             as |el|>
