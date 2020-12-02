@@ -8,7 +8,7 @@ import * as Validators from 'ember-changeset-validations/validators';
 export default class FormGeneratorComponent extends Component {
 
 
-  // Getteres
+  // Getters
 
   get groups() {
     const blueprint = this.args.blueprint[0];
@@ -38,8 +38,17 @@ export default class FormGeneratorComponent extends Component {
   // Actions
 
   @action
-  onSubmit() {
-    return tryInvoke(this.args, 'onSubmit');
+  submitIfValid(changeset) {
+    return this._validateChangeset(changeset)
+      .then(() => tryInvoke(this.args, 'onSubmit'))
+      .catch(() => false)
+  }
+
+  @action
+  transitionIfValid(changeset, w, stepName) {
+    this._validateChangeset(changeset)
+      .then(() => w.["transition-to"](stepName) )
+      .catch(() => false)
   }
 
 
@@ -60,5 +69,16 @@ export default class FormGeneratorComponent extends Component {
     }
     return validation;
   }
+
+  _validateChangeset(changeset) {
+    return changeset.validate()
+      .then(() => {
+        if (changeset.get('isValid'))
+          return true;
+        else
+          throw 'invalid changeset';
+      })
+  }
+
 
 }

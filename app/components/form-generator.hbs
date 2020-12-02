@@ -2,7 +2,7 @@
   {{#each changesets as |changeset index|}}
     <w.Step @name={{index}}>
       <BsForm
-        @onSubmit={{fn this.onSubmit}}
+        @onSubmit={{this.submitIfValid}}
         @model={{changeset}}
       as |form|
       >
@@ -21,7 +21,7 @@
         {{#let (eq index 0) as |isFirstForm|}}
           {{#unless isFirstForm}}
             <button
-              class="btn btn-warning"
+              class="btn btn-secondary"
               {{on "click" (fn w.transition-to (sub index 1))}}
             >
               Go Back
@@ -33,13 +33,16 @@
           {{#unless isLastForm}}
             <button
               class="btn btn-success"
-              {{on "click" (fn w.transition-to (add index 1))}}
+              {{on "click" (fn this.transitionIfValid changeset w (add index 1))}}
             >
               Continue
             </button>
           {{/unless}}
           {{#if isLastForm}}
-            <form.submitButton>Submit</form.submitButton>
+            <form.submitButton
+            >
+              Submit
+            </form.submitButton>
           {{/if}}
         {{/let}}
       </BsForm>
