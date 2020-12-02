@@ -21,6 +21,7 @@
         {{#let (eq index 0) as |isFirstForm|}}
           {{#unless isFirstForm}}
             <button
+              type="button"
               class="btn btn-secondary"
               {{on "click" (fn w.transition-to (sub index 1))}}
             >
@@ -32,6 +33,7 @@
         {{#let (eq index (sub changesets.length 1)) as |isLastForm|}}
           {{#unless isLastForm}}
             <button
+              type="button"
               class="btn btn-success"
               {{on "click" (fn this.transitionIfValid changeset w (add index 1))}}
             >
