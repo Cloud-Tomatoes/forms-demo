@@ -1,6 +1,5 @@
 import Component from '@glimmer/component';
 import { action } from '@ember/object';
-import { tryInvoke } from '@ember/utils';
 
 export default class ModalDialogComponent extends Component {
 
@@ -9,7 +8,9 @@ export default class ModalDialogComponent extends Component {
 
   @action
   onHiddenModal() {
-    return tryInvoke(this.args, "onClose");
+    const onClose = this.args.onClose;
+    if (onClose)
+      return this.args.onClose();
   }
 
   @action

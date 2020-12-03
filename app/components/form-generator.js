@@ -1,6 +1,5 @@
 import Component from '@glimmer/component';
 import { Changeset } from 'ember-changeset';
-import { tryInvoke } from '@ember/utils';
 import { action } from '@ember/object';
 import lookupValidator from 'ember-changeset-validations';
 import * as Validators from 'ember-changeset-validations/validators';
@@ -40,7 +39,7 @@ export default class FormGeneratorComponent extends Component {
   @action
   submitIfValid(changeset) {
     return this._validateChangeset(changeset)
-      .then(() => tryInvoke(this.args, 'onSubmit'))
+      .then(() => this.args.onSubmit())
       .catch(() => false)
   }
 
