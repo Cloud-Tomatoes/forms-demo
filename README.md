@@ -1,16 +1,20 @@
 # forms-demo
 
-This README outlines the details of collaborating on this Ember application.
-A short introduction of this app could easily go here.
 
-## Prerequisites
+## Packages
 
-You will need the following things properly installed on your computer.
+You will need the following installed on your app.
 
-* [Git](https://git-scm.com/)
-* [Node.js](https://nodejs.org/) (with npm)
-* [Ember CLI](https://ember-cli.com/)
-* [Google Chrome](https://google.com/chrome/)
+* [ember-steps](https://github.com/alexlafroscia/ember-steps)
+* [ember-changeset](https://github.com/poteto/ember-changeset)
+* [ember-changeset-validations](https://github.com/poteto/ember-changeset-validations)
+* [ember-bootstrap](https://github.com/kaliber5/ember-bootstrap)
+
+
+* [ember-source: 3.22.2](https://github.com/emberjs/ember.js)
+* [@ember/render-modifiers](https://github.com/emberjs/ember-render-modifiers)
+* [ember-bootstrap-changeset-validations](https://github.com/kaliber5/ember-bootstrap-changeset-validations)
+* [ember-truth-helpers](https://github.com/jmurphyau/ember-truth-helpers)
 
 ## Installation
 
