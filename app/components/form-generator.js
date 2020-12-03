@@ -44,9 +44,9 @@ export default class FormGeneratorComponent extends Component {
   }
 
   @action
-  transitionIfValid(changeset, w, stepName) {
+  continueIfValid(changeset, w, stepName) {
     this._validateChangeset(changeset)
-      .then(() => w.["transition-to"](stepName) )
+      .then(() => w.["transition-to"](stepName + 1) )
       .catch(() => false)
   }
 
