@@ -2,7 +2,7 @@
   {{#each changesets as |changeset index|}}
     <w.Step @name={{index}}>
       <BsForm
-        @onSubmit={{this.submitIfValid}}
+        @onSubmit={{this.submit}}
         @model={{changeset}}
       as |form|
       >

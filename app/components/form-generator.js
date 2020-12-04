@@ -37,10 +37,9 @@ export default class FormGeneratorComponent extends Component {
   // Actions
 
   @action
-  submitIfValid(changeset) {
-    return this._validateChangeset(changeset)
-      .then(() => this.args.onSubmit())
-      .catch(() => false)
+  submit() {
+    const changesets = this.changesets;
+    return this.args.onSubmit(changesets);
   }
 
   @action
