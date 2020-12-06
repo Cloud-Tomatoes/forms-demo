@@ -33,7 +33,7 @@
         {{#let (eq index (sub changesets.length 1)) as |isLastForm|}}
           {{#unless isLastForm}}
             <button
-              type="button"
+              type="submit"
               class="btn btn-success"
               {{on "click" (fn this.continueIfValid changeset w index)}}
             >

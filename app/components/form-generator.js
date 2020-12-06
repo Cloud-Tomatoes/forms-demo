@@ -43,9 +43,9 @@ export default class FormGeneratorComponent extends Component {
   }
 
   @action
-  continueIfValid(changeset, w, stepName) {
+  continueIfValid(changeset, w, stepName, e) {
     this._validateChangeset(changeset)
-      .then(() => w.["transition-to"](stepName + 1) )
+      .then(() => this._transitionStep(w, stepName, e))
       .catch(() => false)
   }
 
@@ -76,6 +76,11 @@ export default class FormGeneratorComponent extends Component {
         else
           throw 'invalid changeset';
       })
+  }
+
+  _transitionStep(stepManager, stepName, event) {
+    stepManager.["transition-to"](stepName + 1);
+    return event.preventDefault();
   }
 
 
