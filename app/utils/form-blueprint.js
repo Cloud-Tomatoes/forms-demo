@@ -65,16 +65,6 @@ export default {
                           "placeholder": "Your age here"
                         }
                     },
-                    "age": {
-                        "type": "number",
-                        "value": 1300,
-                        "ui": {
-                          "label": "Age",
-                          "group": "data",
-                          "position": 3,
-                          "placeholder": "Your age here"
-                        }
-                    },
                     "address": {
                         "type": "text",
                         "ui": {

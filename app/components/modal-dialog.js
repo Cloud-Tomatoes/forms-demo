@@ -14,7 +14,7 @@ export default class ModalDialogComponent extends Component {
   }
 
   @action
-  submit(element) {
+  submit() {
   }
 
-};
+}

@@ -10,7 +10,7 @@ module('Integration | Component | form-generator', function(hooks) {
   test('it renders', async function(assert) {
 
     this.set('blueprint', formBlueprint.data)
-    this.set('onSubmit', function(val) {})
+    this.set('onSubmit', function() {})
     await render(hbs`<FormGenerator @onSubmit={{this.onSubmit}} @blueprint={{this.blueprint}}/>`);
 
     // has three inputs
