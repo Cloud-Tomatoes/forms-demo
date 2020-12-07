@@ -28,7 +28,7 @@
     "bootstrap": "^4.5.3",
     "broccoli-asset-rev": "^3.0.0",
     "ember-auto-import": "^1.6.0",
-    "ember-bootstrap": "^4.4.0",
+    "ember-bootstrap": "^4.5.0",
     "ember-bootstrap-changeset-validations": "^4.0.0",
     "ember-changeset": "^3.10.4",
     "ember-changeset-validations": "^3.10.2",
