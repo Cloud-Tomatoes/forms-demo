@@ -1,36 +1,17 @@
 import Component from '@glimmer/component';
 import { Changeset } from 'ember-changeset';
 import { action } from '@ember/object';
+import { assign } from '@ember/polyfills';
 import lookupValidator from 'ember-changeset-validations';
 import * as Validators from 'ember-changeset-validations/validators';
 
 export default class FormGeneratorComponent extends Component {
 
 
-  // Getters
-
-  get groups() {
-    const blueprint = this.args.blueprint[0];
-    const { properties } = blueprint.attributes;
-    let groups = {};
-    for (let prop in properties) {
-      const group = properties[prop].ui.group;
-      if (!groups[group])
-        groups[group] = {}
-      groups[group][prop] = properties[prop];
-    }
-    return groups;
-  }
-
-  get changesets() {
-    const groups = this.groups;
-    let changesets = [];
-    for (let group in groups) {
-      const validations = this._getValidations(groups[group]);
-      const groupChangeset = Changeset(groups[group], lookupValidator(validations), validations);
-      changesets.push(groupChangeset)
-    }
-    return changesets;
+  constructor() {
+    super(...arguments);
+    this._buildGroups();
+    this._buildChangesets();
   }
 
 
@@ -38,8 +19,9 @@ export default class FormGeneratorComponent extends Component {
 
   @action
   submit() {
-    const changesets = this.changesets;
-    return this.args.onSubmit(changesets);
+    this.changesets.forEach(ch => ch.execute());
+    assign(this.blueprint.properties, this.groups);
+    return this.args.onSubmit(this.blueprint);
   }
 
   @action
@@ -51,6 +33,31 @@ export default class FormGeneratorComponent extends Component {
 
 
   // Private Methods
+
+  _buildGroups() {
+    const blueprint = this.args.blueprint;
+    const { properties } = blueprint;
+    let groups = {};
+    for (let prop in properties) {
+      const group = properties[prop].ui.group;
+      if (!groups[group])
+        groups[group] = {}
+      groups[group][prop] = properties[prop];
+    }
+    this.blueprint = blueprint;
+    this.groups = groups;
+  }
+
+  _buildChangesets() {
+    const groups = this.groups;
+    let changesets = [];
+    for (let group in groups) {
+      const validations = this._getValidations(groups[group]);
+      const groupChangeset = Changeset(groups[group], lookupValidator(validations), validations);
+      changesets.push(groupChangeset)
+    }
+    this.changesets = changesets;
+  }
 
   _getValidations(group) {
     let validation = {};
