@@ -6,5 +6,11 @@ export default class FieldsController extends Controller {
   @action transitionToParentRoute() {
     return this.transitionToRoute('/');
   }
-  
+
+  @action saveAndCloseModal(Modal, blueprint) {
+    blueprint.save().then(
+      () => Modal.close()
+    );
+  }
+
 }
