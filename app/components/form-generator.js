@@ -10,6 +10,7 @@ export default class FormGeneratorComponent extends Component {
 
   constructor() {
     super(...arguments);
+    this.blueprint = this.args.blueprint;
     this._buildGroups();
     this._buildChangesets();
   }
@@ -36,8 +37,7 @@ export default class FormGeneratorComponent extends Component {
   // Private Methods
 
   _buildGroups() {
-    const blueprint = this.args.blueprint;
-    const { properties } = blueprint;
+    const { properties } = this.blueprint;
     let groups = {};
     for (let prop in properties) {
       const group = properties[prop].ui.group;
@@ -45,7 +45,6 @@ export default class FormGeneratorComponent extends Component {
         groups[group] = {}
       groups[group][prop] = properties[prop];
     }
-    this.blueprint = blueprint;
     this.groups = groups;
   }
 
