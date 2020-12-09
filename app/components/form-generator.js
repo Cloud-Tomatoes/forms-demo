@@ -20,7 +20,8 @@ export default class FormGeneratorComponent extends Component {
   @action
   submit() {
     this.changesets.forEach(ch => ch.execute());
-    assign(this.blueprint.properties, this.groups);
+    const changedProperties = Object.values(this.groups);
+    assign(this.blueprint.properties, ...changedProperties);
     return this.args.onSubmit(this.blueprint);
   }
 
