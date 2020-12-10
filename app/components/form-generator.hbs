@@ -14,6 +14,7 @@
             as |el|>
             <el.control
               placeholder={{changeset-get changeset (concat key ".ui.placeholder")}}
+              readonly={{changeset-get changeset (concat key ".ui.readonly")}}
             />
           </form.element>
         {{/each-in}}

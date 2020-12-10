@@ -34,9 +34,10 @@ export default {
   },
   "age": {
       "type": "number",
-      "value": 1300,
+      "value": 55,
       "ui": {
         "label": "Age",
+        "readonly": true,
         "group": "data",
         "position": 3,
         "placeholder": "Your age here"
