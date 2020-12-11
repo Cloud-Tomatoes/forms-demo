@@ -1,7 +1,11 @@
 @import "ember-bootstrap/bootstrap";
+@import 'ember-power-select/themes/bootstrap';
+@import "ember-power-select";
 
 body {
   padding: 50px
 }
 
-@import "ember-bootstrap/bootstrap";
+.ember-basic-dropdown-content {
+  z-index: 1050;
+}
