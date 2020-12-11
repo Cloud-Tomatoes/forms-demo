@@ -1,15 +1,20 @@
 import { module, test } from 'qunit';
 import { setupRenderingTest } from 'ember-qunit';
+import { setupMirage } from 'ember-cli-mirage/test-support';
 import { render } from '@ember/test-helpers';
 import { hbs } from 'ember-cli-htmlbars';
-import formBlueprint from 'forms-demo/utils/form-blueprint';
 
 module('Integration | Component | form-generator', function(hooks) {
   setupRenderingTest(hooks);
+  setupMirage(hooks);
 
   test('it renders', async function(assert) {
+    this.server.create('form-blueprint');
 
-    this.set('blueprint', formBlueprint.data)
+    const store = this.owner.lookup('service:store');
+    const blueprint = await store.findRecord('form-blueprint', 1);
+
+    this.set('blueprint', blueprint);
     this.set('onSubmit', function() {})
     await render(hbs`<FormGenerator @onSubmit={{this.onSubmit}} @blueprint={{this.blueprint}}/>`);
 
