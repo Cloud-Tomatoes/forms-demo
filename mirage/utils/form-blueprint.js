@@ -43,6 +43,17 @@ export default {
         "placeholder": "Your age here"
       }
   },
+  "gender": {
+      "type": "group",
+      "ui": {
+        "label": "Gender",
+        "group": "data",
+        "component": {
+          "name": "form-generator/select",
+          "options": ['female','male','not binary']
+        },
+      }
+  },
   "address": {
       "type": "text",
       "ui": {
