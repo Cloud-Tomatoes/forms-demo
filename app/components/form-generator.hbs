@@ -12,11 +12,20 @@
             @label={{str-capitalize (changeset-get changeset (concat key ".ui.label"))}}
             @property={{concat key ".value"}}
             as |el|>
-            <el.control
-              placeholder={{changeset-get changeset (concat key ".ui.placeholder")}}
-              readonly={{changeset-get changeset (concat key ".ui.readonly")}}
-            />
-          </form.element>
+            {{#if (eq (changeset-get changeset (concat key ".type")) "group")}}
+              {{component
+                (changeset-get changeset (concat key ".ui.component.name"))
+                options=(changeset-get changeset (concat key ".ui.component.options"))
+                selected=(changeset-get changeset (concat key ".value"))
+                onSelection=el.setValue
+              }}
+            {{else}}
+              <el.control
+                placeholder={{changeset-get changeset (concat key ".ui.placeholder")}}
+                readonly={{changeset-get changeset (concat key ".ui.readonly")}}
+              />
+            {{/if}}
+            </form.element>
         {{/each-in}}
 
         {{#let (eq index 0) as |isFirstForm|}}
