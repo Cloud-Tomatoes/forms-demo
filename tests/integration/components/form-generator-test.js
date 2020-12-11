@@ -16,10 +16,12 @@ module('Integration | Component | form-generator', function(hooks) {
 
     this.set('blueprint', blueprint);
     this.set('onSubmit', function() {})
-    await render(hbs`<FormGenerator @onSubmit={{this.onSubmit}} @blueprint={{this.blueprint}}/>`);
 
+    await render(hbs`<FormGenerator @onSubmit={{this.onSubmit}} @blueprint={{this.blueprint}}/>`);
     // has three inputs
     assert.equal(this.element.querySelectorAll('input').length, 3);
+    // has ember power select
+    assert.ok(this.element.querySelector('.ember-power-select-trigger'));
     // has Continue button
     assert.equal(this.element.querySelector('button').textContent.trim(), "Continue");
   });
