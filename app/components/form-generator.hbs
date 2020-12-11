@@ -1,5 +1,5 @@
 <StepManager as |w|>
-  {{#each changesets as |changeset index|}}
+  {{#each this.changesets as |changeset index|}}
     <w.Step @name={{index}}>
       <BsForm
         @onSubmit={{this.submit}}
