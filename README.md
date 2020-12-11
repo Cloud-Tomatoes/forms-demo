@@ -10,7 +10,7 @@ You will need the following installed on your app.
 * [ember-changeset-validations](https://github.com/poteto/ember-changeset-validations)
 * [ember-bootstrap](https://github.com/kaliber5/ember-bootstrap)
 
-
+* [ember-power-select](https://github.com/cibernox/ember-power-select)
 * [ember-source: 3.22.2](https://github.com/emberjs/ember.js)
 * [@ember/render-modifiers](https://github.com/emberjs/ember-render-modifiers)
 * [ember-bootstrap-changeset-validations](https://github.com/kaliber5/ember-bootstrap-changeset-validations)
