@@ -14,6 +14,7 @@ You will need the following installed on your app.
 * [ember-source: 3.22.2](https://github.com/emberjs/ember.js)
 * [@ember/render-modifiers](https://github.com/emberjs/ember-render-modifiers)
 * [ember-bootstrap-changeset-validations](https://github.com/kaliber5/ember-bootstrap-changeset-validations)
+* [ember-bootstrap-power-select](https://github.com/kaliber5/ember-bootstrap-power-select)
 * [ember-truth-helpers](https://github.com/jmurphyau/ember-truth-helpers)
 
 ## Installation
