@@ -1,11 +1,13 @@
 export default {
-  "name": {
+  "fullName": {
       "type": "text",
       "ui": {
-        "label": "first name",
+        "label": "Full name",
         "group": "data",
         "position": 1,
-        "placeholder": "Your name here",
+        "editorOptions": {
+          "placeholder": "Your name here",
+        }
       },
       "validation": {
           "Neos.Neos\/Validation\/validatePresence": {
@@ -17,40 +19,42 @@ export default {
           }
       }
   },
-  "lastName": {
-      "type": "text",
-      "ui": {
-        "label": "last name",
-        "group": "data",
-        "position": 2,
-        "placeholder": "Your last name here",
-      },
-      "validation": {
-          "Neos.Neos\/Validation\/validatePresence": {
-            "presence": true,
-            "ignoreBlank": true
-          }
-      }
-  },
   "age": {
       "type": "number",
       "value": 55,
       "ui": {
         "label": "Age",
-        "readonly": true,
         "group": "data",
         "position": 3,
-        "placeholder": "Your age here"
+        "editorOptions": {
+          "readonly": true,
+          "placeholder": "Your age here"
+        }
       }
   },
   "gender": {
-      "type": "group",
+      "type": "power-select",
       "ui": {
         "label": "Gender",
         "group": "data",
-        "component": {
-          "name": "form-generator/select",
-          "options": ['female','male','not binary']
+        "editorOptions": {
+          "placeholder": "Choose gender",
+          "searchEnabled": true,
+          "disabled": false,
+          "values": ['female','male','not binary']
+        },
+      }
+  },
+  "tag": {
+      "type": "power-select-multiple",
+      "ui": {
+        "label": "Tag",
+        "group": "data",
+        "editorOptions": {
+          "placeholder": "Tags...",
+          "searchEnabled": true,
+          "values": ['begginer','advanced','medium','expert'],
+          "closeOnSelect": false
         },
       }
   },
@@ -81,7 +85,9 @@ export default {
       "ui": {
         "label": "Favourite color",
         "group": "misc",
-        "placeholder": "Favourite color"
+        "editorOptions": {
+          "placeholder": "Favourite color"
+        }
       },
       "validation": {
           "Neos.Neos\/Validation\/validatePresence": {
@@ -95,7 +101,9 @@ export default {
       "ui": {
         "label": "Description",
         "group": "misc",
-        "placeholder": "Color description"
+        "editorOptions": {
+          "placeholder": "Color description"
+        }
       }
   }
 }
