@@ -11,21 +11,16 @@
             @controlType={{changeset-get changeset (concat key ".type")}}
             @label={{str-capitalize (changeset-get changeset (concat key ".ui.label"))}}
             @property={{concat key ".value"}}
+            @options={{changeset-get changeset (concat key ".ui.editorOptions.values")}}
             as |el|>
-            {{#if (eq (changeset-get changeset (concat key ".type")) "group")}}
-              {{component
-                (changeset-get changeset (concat key ".ui.component.name"))
-                options=(changeset-get changeset (concat key ".ui.component.options"))
-                selected=(changeset-get changeset (concat key ".value"))
-                onSelection=el.setValue
-              }}
-            {{else}}
-              <el.control
-                placeholder={{changeset-get changeset (concat key ".ui.placeholder")}}
-                readonly={{changeset-get changeset (concat key ".ui.readonly")}}
-              />
-            {{/if}}
-            </form.element>
+            <el.control
+              placeholder={{changeset-get changeset (concat key ".ui.editorOptions.placeholder")}}
+              readonly={{changeset-get changeset (concat key ".ui.editorOptions.readonly")}}
+              @disabled={{changeset-get changeset (concat key ".ui.editorOptions.disabled")}}
+              @closeOnSelect={{changeset-get changeset (concat key ".ui.editorOptions.closeOnSelect")}}
+              @searchEnabled={{changeset-get changeset (concat key ".ui.editorOptions.searchEnabled")}}
+            />
+          </form.element>
         {{/each-in}}
 
         {{#let (eq index 0) as |isFirstForm|}}
