@@ -22,6 +22,8 @@ module('Integration | Component | form-generator', function(hooks) {
     assert.equal(this.element.querySelectorAll('input').length, 3);
     // has ember power select
     assert.ok(this.element.querySelector('.ember-power-select-trigger'));
+    // has ember power smulti elect
+    assert.ok(this.element.querySelector('.ember-power-select-multiple-trigger'));
     // has Continue button
     assert.equal(this.element.querySelector('button').textContent.trim(), "Continue");
   });
